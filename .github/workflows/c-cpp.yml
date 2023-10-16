@@ -13,6 +13,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    - name: dependencies
+      run: sudo apt-get install mingw-w64
     - name: make
       run: make
     - name: Upload a Build Artifact
