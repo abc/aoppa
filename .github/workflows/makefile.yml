@@ -13,8 +13,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+              
 
-    - name: Install dependencies
+    - name: Install MinGW
+      uses: egor-tensin/setup-mingw@v2.2.0
+  
+    - name: build
       run: make
       
     - name: Upload a Build Artifact
