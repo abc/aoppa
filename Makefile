@@ -4,11 +4,11 @@
 
 OPTIONS  = -D_GNU_SOURCE
 
-CC       = cc
-CXX      = c++
+CC       = x86_64-w64-mingw32-gcc
+CXX      = x86_64-w64-mingw32-g++
 CFLAGS   = $(OPTIONS) -g -O2 -Wall -fPIC
 CXXFLAGS = $(CFLAGS)
-LDFLAGS  = -rdynamic
+LDFLAGS  = -lmingw32 -rdynamic
 LIBS     = -ldl
 OBJ      = main.o parser.o misc.o
 PLUGINS  = input-mmap.so input-gzip.so output-xml.so output-ign.so
@@ -17,10 +17,10 @@ SOFLAGS  = -shared
 all:	aoppa $(PLUGINS)
 
 aoppa: $(OBJ)
-	$(CXX) $(LDFLAGS) -o aoppa $(OBJ) $(LIBS)
+	$(CXX) $(LDFLAGS) -o aoppa.exe $(OBJ) $(LIBS)
 
 clean:
-	rm -f $(OBJ) aoppa $(PLUGINS) core
+	rm -f $(OBJ) aoppa.exe $(PLUGINS) core
 
 ## plugins
 input-mmap.so: input-mmap.cc
